@@ -127,7 +127,6 @@
             this.dgvKey.EnableHeadersVisualStyles = false;
             this.dgvKey.Location = new System.Drawing.Point(21, 24);
             this.dgvKey.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvKey.MultiSelect = false;
             this.dgvKey.Name = "dgvKey";
             this.dgvKey.RowHeadersVisible = false;
             this.dgvKey.RowHeadersWidth = 62;
@@ -157,7 +156,6 @@
             this.dgvProperty.EnableHeadersVisualStyles = false;
             this.dgvProperty.Location = new System.Drawing.Point(22, 24);
             this.dgvProperty.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvProperty.MultiSelect = false;
             this.dgvProperty.Name = "dgvProperty";
             this.dgvProperty.RowHeadersVisible = false;
             this.dgvProperty.RowHeadersWidth = 62;
@@ -187,7 +185,6 @@
             this.dgvNavigation.EnableHeadersVisualStyles = false;
             this.dgvNavigation.Location = new System.Drawing.Point(22, 24);
             this.dgvNavigation.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvNavigation.MultiSelect = false;
             this.dgvNavigation.Name = "dgvNavigation";
             this.dgvNavigation.RowHeadersVisible = false;
             this.dgvNavigation.RowHeadersWidth = 62;
@@ -371,6 +368,7 @@
             this.btnBuildQuery.TabIndex = 31;
             this.btnBuildQuery.Text = "Build oData Query";
             this.btnBuildQuery.UseVisualStyleBackColor = true;
+            this.btnBuildQuery.Click += new System.EventHandler(this.btnBuildQuery_Click);
             // 
             // formEntityView
             // 

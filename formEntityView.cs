@@ -405,5 +405,50 @@ namespace SF_Entity_Metadata
                 dgvEntitySetList.DataSource = dtEntitySet;
             }
         }
+
+        private void btnBuildQuery_Click(object sender, EventArgs e)
+        {
+            string sEntityName = string.Empty;
+            string sFilter = string.Empty;
+            string sSelect = string.Empty;
+
+            if (dgvEntitySetList.SelectedRows != null)
+            {
+                sEntityName = dgvEntitySetList.SelectedRows[0].Cells[0].Value.ToString();
+                
+                if(dgvKey.SelectedRows != null)
+                {
+                    foreach (DataGridViewRow itemSelected in dgvKey.SelectedRows)
+                    {
+                        if(string.IsNullOrEmpty(sFilter) == false)
+                        {
+                            sFilter += "& ";
+                        }
+                        else
+                        {
+                            sFilter = "filter=";
+                        }
+                        sFilter += itemSelected.Cells[1].Value.ToString() + " eq " + "'[Enter Value]' ";
+                    }
+                }
+                if (dgvProperty.SelectedRows != null)
+                {
+                    foreach (DataGridViewRow itemSelected in dgvProperty.SelectedRows)
+                    {
+                        if (string.IsNullOrEmpty(sSelect) == false)
+                        {
+                            sSelect += ",";
+                        }
+                        else
+                        {
+                            sSelect = "select=";
+                        }
+                        sSelect += itemSelected.Cells[1].Value.ToString();
+                    }
+                }
+
+                    }
+
+                }
     }
 }
