@@ -56,186 +56,204 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 13);
+            this.label1.Location = new System.Drawing.Point(13, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 20);
+            this.label1.Size = new System.Drawing.Size(127, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Company ID:";
             // 
             // tbCompanyId
             // 
-            this.tbCompanyId.Location = new System.Drawing.Point(123, 13);
+            this.tbCompanyId.Location = new System.Drawing.Point(148, 16);
+            this.tbCompanyId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbCompanyId.Name = "tbCompanyId";
-            this.tbCompanyId.Size = new System.Drawing.Size(100, 26);
+            this.tbCompanyId.Size = new System.Drawing.Size(132, 30);
             this.tbCompanyId.TabIndex = 1;
             this.tbCompanyId.Text = "iochpemaxi";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(242, 15);
+            this.label2.Location = new System.Drawing.Point(288, 19);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 20);
+            this.label2.Size = new System.Drawing.Size(83, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "User ID:";
             // 
             // tbUserId
             // 
-            this.tbUserId.Location = new System.Drawing.Point(310, 13);
+            this.tbUserId.Location = new System.Drawing.Point(379, 16);
+            this.tbUserId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbUserId.Name = "tbUserId";
-            this.tbUserId.Size = new System.Drawing.Size(100, 26);
+            this.tbUserId.Size = new System.Drawing.Size(132, 30);
             this.tbUserId.TabIndex = 3;
             this.tbUserId.Text = "onama_ad";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(48, 43);
+            this.label3.Location = new System.Drawing.Point(519, 19);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 20);
+            this.label3.Size = new System.Drawing.Size(92, 25);
             this.label3.TabIndex = 4;
             this.label3.Text = "Client ID:";
             // 
             // tbClientId
             // 
-            this.tbClientId.Location = new System.Drawing.Point(123, 43);
+            this.tbClientId.Location = new System.Drawing.Point(619, 19);
+            this.tbClientId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbClientId.Name = "tbClientId";
-            this.tbClientId.Size = new System.Drawing.Size(361, 26);
+            this.tbClientId.Size = new System.Drawing.Size(480, 30);
             this.tbClientId.TabIndex = 5;
             this.tbClientId.Text = "MGI5NWFkMzUwNjIwYzlmMTM3ZTVjNGY0YzI2Zg";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(30, 77);
+            this.label4.Location = new System.Drawing.Point(24, 62);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 20);
+            this.label4.Size = new System.Drawing.Size(116, 25);
             this.label4.TabIndex = 6;
             this.label4.Text = "Grant Type:";
             // 
             // tbGrantType
             // 
-            this.tbGrantType.Location = new System.Drawing.Point(123, 74);
+            this.tbGrantType.Location = new System.Drawing.Point(148, 59);
+            this.tbGrantType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbGrantType.Name = "tbGrantType";
-            this.tbGrantType.Size = new System.Drawing.Size(318, 26);
+            this.tbGrantType.Size = new System.Drawing.Size(423, 30);
             this.tbGrantType.TabIndex = 7;
             this.tbGrantType.Text = "urn:ietf:params:oauth:grant-type:saml2-bearer";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(428, 13);
+            this.label5.Location = new System.Drawing.Point(10, 143);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 20);
+            this.label5.Size = new System.Drawing.Size(130, 25);
             this.label5.TabIndex = 8;
             this.label5.Text = "Client Secret:";
             // 
             // tbClientSecret
             // 
-            this.tbClientSecret.Location = new System.Drawing.Point(532, 10);
+            this.tbClientSecret.Location = new System.Drawing.Point(148, 139);
+            this.tbClientSecret.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbClientSecret.Multiline = true;
             this.tbClientSecret.Name = "tbClientSecret";
             this.tbClientSecret.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbClientSecret.Size = new System.Drawing.Size(668, 89);
+            this.tbClientSecret.Size = new System.Drawing.Size(1053, 195);
             this.tbClientSecret.TabIndex = 9;
             this.tbClientSecret.Text = resources.GetString("tbClientSecret.Text");
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 107);
+            this.label6.Location = new System.Drawing.Point(586, 65);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(117, 20);
+            this.label6.Size = new System.Drawing.Size(143, 25);
             this.label6.TabIndex = 10;
             this.label6.Text = "Assertion URL:";
             // 
             // tbAssertionUrl
             // 
-            this.tbAssertionUrl.Location = new System.Drawing.Point(123, 105);
+            this.tbAssertionUrl.Location = new System.Drawing.Point(731, 62);
+            this.tbAssertionUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbAssertionUrl.Name = "tbAssertionUrl";
-            this.tbAssertionUrl.Size = new System.Drawing.Size(237, 26);
+            this.tbAssertionUrl.Size = new System.Drawing.Size(315, 30);
             this.tbAssertionUrl.TabIndex = 11;
             this.tbAssertionUrl.Text = "https://api19.sapsf.com/oauth/idp";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(438, 107);
+            this.label7.Location = new System.Drawing.Point(23, 101);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 20);
+            this.label7.Size = new System.Drawing.Size(117, 25);
             this.label7.TabIndex = 12;
             this.label7.Text = "Token URL:";
             // 
             // tbTokenURL
             // 
-            this.tbTokenURL.Location = new System.Drawing.Point(532, 107);
+            this.tbTokenURL.Location = new System.Drawing.Point(148, 101);
+            this.tbTokenURL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbTokenURL.Name = "tbTokenURL";
-            this.tbTokenURL.Size = new System.Drawing.Size(254, 26);
+            this.tbTokenURL.Size = new System.Drawing.Size(337, 30);
             this.tbTokenURL.TabIndex = 13;
             this.tbTokenURL.Text = "https://api19.sapsf.com/oauth/token";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(808, 107);
+            this.label8.Location = new System.Drawing.Point(499, 104);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(76, 20);
+            this.label8.Size = new System.Drawing.Size(93, 25);
             this.label8.TabIndex = 14;
             this.label8.Text = "API URL:";
             // 
             // tbAPIURL
             // 
-            this.tbAPIURL.Location = new System.Drawing.Point(922, 107);
+            this.tbAPIURL.Location = new System.Drawing.Point(600, 101);
+            this.tbAPIURL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbAPIURL.Name = "tbAPIURL";
-            this.tbAPIURL.Size = new System.Drawing.Size(236, 26);
+            this.tbAPIURL.Size = new System.Drawing.Size(313, 30);
             this.tbAPIURL.TabIndex = 15;
             this.tbAPIURL.Text = "https://api19.sapsf.com/odata/v2/";
             // 
             // btnGetMetadata
             // 
-            this.btnGetMetadata.Location = new System.Drawing.Point(652, 138);
-            this.btnGetMetadata.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetMetadata.Location = new System.Drawing.Point(619, 366);
+            this.btnGetMetadata.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGetMetadata.Name = "btnGetMetadata";
-            this.btnGetMetadata.Size = new System.Drawing.Size(106, 31);
+            this.btnGetMetadata.Size = new System.Drawing.Size(294, 39);
             this.btnGetMetadata.TabIndex = 16;
-            this.btnGetMetadata.Text = "Get Metadata";
+            this.btnGetMetadata.Text = "Get Metadata from SF & Load";
             this.btnGetMetadata.UseVisualStyleBackColor = true;
             this.btnGetMetadata.Click += new System.EventHandler(this.btnGetMetadata_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(418, 141);
+            this.label10.Location = new System.Drawing.Point(921, 104);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(118, 20);
+            this.label10.Size = new System.Drawing.Size(143, 25);
             this.label10.TabIndex = 19;
             this.label10.Text = "Metadata URL:";
             // 
             // tbMetadatUrl
             // 
-            this.tbMetadatUrl.Location = new System.Drawing.Point(532, 141);
+            this.tbMetadatUrl.Location = new System.Drawing.Point(1072, 101);
+            this.tbMetadatUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbMetadatUrl.Name = "tbMetadatUrl";
-            this.tbMetadatUrl.Size = new System.Drawing.Size(98, 26);
+            this.tbMetadatUrl.Size = new System.Drawing.Size(129, 30);
             this.tbMetadatUrl.TabIndex = 20;
             this.tbMetadatUrl.Text = "$metadata";
             // 
             // btnLoadMetadata
             // 
-            this.btnLoadMetadata.Location = new System.Drawing.Point(768, 138);
-            this.btnLoadMetadata.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLoadMetadata.Location = new System.Drawing.Point(926, 366);
+            this.btnLoadMetadata.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLoadMetadata.Name = "btnLoadMetadata";
-            this.btnLoadMetadata.Size = new System.Drawing.Size(132, 31);
+            this.btnLoadMetadata.Size = new System.Drawing.Size(275, 39);
             this.btnLoadMetadata.TabIndex = 21;
-            this.btnLoadMetadata.Text = "Load Metadata";
+            this.btnLoadMetadata.Text = "Load Metadata from File";
             this.btnLoadMetadata.UseVisualStyleBackColor = true;
             this.btnLoadMetadata.Click += new System.EventHandler(this.btnLoadMetadata_Click);
             // 
             // btnLoadConfig
             // 
-            this.btnLoadConfig.Location = new System.Drawing.Point(14, 138);
-            this.btnLoadConfig.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLoadConfig.Location = new System.Drawing.Point(120, 366);
+            this.btnLoadConfig.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLoadConfig.Name = "btnLoadConfig";
-            this.btnLoadConfig.Size = new System.Drawing.Size(145, 31);
+            this.btnLoadConfig.Size = new System.Drawing.Size(193, 39);
             this.btnLoadConfig.TabIndex = 22;
             this.btnLoadConfig.Text = "Load Configuration";
             this.btnLoadConfig.UseVisualStyleBackColor = true;
@@ -243,10 +261,10 @@
             // 
             // btnSaveConfig
             // 
-            this.btnSaveConfig.Location = new System.Drawing.Point(163, 138);
-            this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSaveConfig.Location = new System.Drawing.Point(318, 366);
+            this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSaveConfig.Name = "btnSaveConfig";
-            this.btnSaveConfig.Size = new System.Drawing.Size(145, 31);
+            this.btnSaveConfig.Size = new System.Drawing.Size(193, 39);
             this.btnSaveConfig.TabIndex = 23;
             this.btnSaveConfig.Text = "Save Configuration";
             this.btnSaveConfig.UseVisualStyleBackColor = true;
@@ -254,10 +272,10 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1208, 202);
+            this.ClientSize = new System.Drawing.Size(1317, 476);
             this.Controls.Add(this.btnSaveConfig);
             this.Controls.Add(this.btnLoadConfig);
             this.Controls.Add(this.btnLoadMetadata);
@@ -280,7 +298,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbCompanyId);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "SF Entity Metadata Explorer";
             this.ResumeLayout(false);

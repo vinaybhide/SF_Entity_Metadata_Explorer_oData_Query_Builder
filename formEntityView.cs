@@ -13,6 +13,8 @@ namespace SF_Entity_Metadata
 {
     public partial class formEntityView : Form
     {
+        public bool bSearchPropertyClicked = false;
+        public SFConfiguration sfConfigObject = null;
         public string strEntityMetadata = string.Empty;
         public XmlDocument xmlMetadata = null;
         public XmlNodeList nodelistSchema = null;
@@ -33,24 +35,26 @@ namespace SF_Entity_Metadata
             InitializeComponent();
         }
 
-        public formEntityView(string fetchedMetadata)
+        public formEntityView(string fetchedMetadata, SFConfiguration sfConfigObject)
         {
             InitializeComponent();
             strEntityMetadata = fetchedMetadata;
+            this.sfConfigObject = sfConfigObject;
+
             dtEntitySet = new DataTable();
             dtEntitySet.Columns.Add("EntityName");
             dtEntitySet.Columns.Add("EntityType");
-            dtEntitySet.Columns.Add("sap:label");
-            dtEntitySet.Columns.Add("sap:creatable");
-            dtEntitySet.Columns.Add("sap:updatable");
-            dtEntitySet.Columns.Add("sap:upsertable");
-            dtEntitySet.Columns.Add("sap:deletable");
+            dtEntitySet.Columns.Add("sap_label");
+            dtEntitySet.Columns.Add("sap_creatable");
+            dtEntitySet.Columns.Add("sap_updatable");
+            dtEntitySet.Columns.Add("sap_upsertable");
+            dtEntitySet.Columns.Add("sap_deletable");
             dtEntitySet.Columns.Add("Summary");
             dtEntitySet.Columns.Add("LongDescription");
 
             dtEntityTags = new DataTable();
             dtEntityTags.Columns.Add("EntityName");
-            dtEntityTags.Columns.Add("sap:tag");
+            dtEntityTags.Columns.Add("sap_tag");
 
             dtEntityKey = new DataTable();
             dtEntityKey.Columns.Add("EntityName"); dtEntityKey.Columns.Add("Key_Name");
@@ -60,30 +64,30 @@ namespace SF_Entity_Metadata
             dtEntityProperty.Columns.Add("Property_Name");
             dtEntityProperty.Columns.Add("Type");
             dtEntityProperty.Columns.Add("Nullable");
-            dtEntityProperty.Columns.Add("sap:required");
-            dtEntityProperty.Columns.Add("sap:creatable");
-            dtEntityProperty.Columns.Add("sap:updatable");
-            dtEntityProperty.Columns.Add("sap:upsertable");
-            dtEntityProperty.Columns.Add("sap:visible");
-            dtEntityProperty.Columns.Add("sap:sortable");
-            dtEntityProperty.Columns.Add("sap:filterable");
-            dtEntityProperty.Columns.Add("sap:label");
+            dtEntityProperty.Columns.Add("sap_required");
+            dtEntityProperty.Columns.Add("sap_creatable");
+            dtEntityProperty.Columns.Add("sap_updatable");
+            dtEntityProperty.Columns.Add("sap_upsertable");
+            dtEntityProperty.Columns.Add("sap_visible");
+            dtEntityProperty.Columns.Add("sap_sortable");
+            dtEntityProperty.Columns.Add("sap_filterable");
+            dtEntityProperty.Columns.Add("sap_label");
 
             dtEntityNavigationProperty = new DataTable();
             dtEntityNavigationProperty.Columns.Add("EntityName");
             dtEntityNavigationProperty.Columns.Add("NavigationProperty_Name");
-            dtEntityNavigationProperty.Columns.Add("sap:required");
-            dtEntityNavigationProperty.Columns.Add("sap:creatable");
-            dtEntityNavigationProperty.Columns.Add("sap:updatable");
-            dtEntityNavigationProperty.Columns.Add("sap:upsertable");
-            dtEntityNavigationProperty.Columns.Add("sap:visible");
-            dtEntityNavigationProperty.Columns.Add("sap:sortable");
-            dtEntityNavigationProperty.Columns.Add("sap:filterable");
+            dtEntityNavigationProperty.Columns.Add("sap_required");
+            dtEntityNavigationProperty.Columns.Add("sap_creatable");
+            dtEntityNavigationProperty.Columns.Add("sap_updatable");
+            dtEntityNavigationProperty.Columns.Add("sap_upsertable");
+            dtEntityNavigationProperty.Columns.Add("sap_visible");
+            dtEntityNavigationProperty.Columns.Add("sap_sortable");
+            dtEntityNavigationProperty.Columns.Add("sap_filterable");
             dtEntityNavigationProperty.Columns.Add("Relationship");
             dtEntityNavigationProperty.Columns.Add("FromRole");
             dtEntityNavigationProperty.Columns.Add("ToRole");
-            dtEntityNavigationProperty.Columns.Add("sap:field-control");
-            dtEntityNavigationProperty.Columns.Add("sap:label");
+            dtEntityNavigationProperty.Columns.Add("sap_field-control");
+            dtEntityNavigationProperty.Columns.Add("sap_label");
 
             PopulateTables();
         }
@@ -136,10 +140,20 @@ namespace SF_Entity_Metadata
                         }
                     }
                     dgvEntitySetList.DataSource = dtEntitySet;
+                    dgvEntityTags.DataSource = dtEntityTags;
+                    dgvKey.DataSource = dtEntityKey;
+                    dgvProperty.DataSource = dtEntityProperty;
+                    dgvNavigation.DataSource = dtEntityNavigationProperty;
+
                     foreach (DataColumn colName in dtEntitySet.Columns)
                     {
                         cmbColNames.Items.Add(colName.ColumnName);
                     }
+                    foreach (DataColumn colName in dtEntityProperty.Columns)
+                    {
+                        cmbPropColumn.Items.Add(colName.ColumnName);
+                    }
+
                 }
             }
         }
@@ -165,11 +179,11 @@ namespace SF_Entity_Metadata
                             //add EntitySet Node
                             dr["EntityName"] = strEntityName = nodeEntitySet.Attributes["Name"].Value.ToString();
                             dr["EntityType"] = nodeEntitySet.Attributes["EntityType"] != null ? nodeEntitySet.Attributes["EntityType"].Value.ToString() : "";
-                            dr["sap:label"] = nodeEntitySet.Attributes["sap:label"] != null ? nodeEntitySet.Attributes["sap:label"].Value.ToString() : "";
-                            dr["sap:creatable"] = nodeEntitySet.Attributes["sap:creatable"] != null ? nodeEntitySet.Attributes["sap:creatable"].Value.ToString() : "";
-                            dr["sap:updatable"] = nodeEntitySet.Attributes["sap:updatable"] != null ? nodeEntitySet.Attributes["sap:updatable"].Value.ToString() : "";
-                            dr["sap:upsertable"] = nodeEntitySet.Attributes["sap:upsertable"] != null ? nodeEntitySet.Attributes["sap:upsertable"].Value.ToString() : "";
-                            dr["sap:deletable"] = nodeEntitySet.Attributes["sap:deletable"] != null ? nodeEntitySet.Attributes["sap:deletable"].Value.ToString() : "";
+                            dr["sap_label"] = nodeEntitySet.Attributes["sap:label"] != null ? nodeEntitySet.Attributes["sap:label"].Value.ToString() : "";
+                            dr["sap_creatable"] = nodeEntitySet.Attributes["sap:creatable"] != null ? nodeEntitySet.Attributes["sap:creatable"].Value.ToString() : "";
+                            dr["sap_updatable"] = nodeEntitySet.Attributes["sap:updatable"] != null ? nodeEntitySet.Attributes["sap:updatable"].Value.ToString() : "";
+                            dr["sap_upsertable"] = nodeEntitySet.Attributes["sap:upsertable"] != null ? nodeEntitySet.Attributes["sap:upsertable"].Value.ToString() : "";
+                            dr["sap_deletable"] = nodeEntitySet.Attributes["sap:deletable"] != null ? nodeEntitySet.Attributes["sap:deletable"].Value.ToString() : "";
 
                             //now get child
                             nodeDocumentation = nodeEntitySet.HasChildNodes == true ? nodeEntitySet.ChildNodes[0] : null;
@@ -185,7 +199,7 @@ namespace SF_Entity_Metadata
                                     {
                                         dr["LongDescription"] = nodeChildDocument.InnerText;
                                     }
-                                    else if (nodeChildDocument.Name.Equals("sap:tagcollection"))
+                                    else if (nodeChildDocument.Name.Equals("sap_tagcollection"))
                                     {
                                         if (nodeChildDocument.HasChildNodes == true)
                                         {
@@ -193,7 +207,7 @@ namespace SF_Entity_Metadata
                                             {
                                                 drTags = dtEntityTags.NewRow();
                                                 drTags["EntityName"] = strEntityName;
-                                                drTags["sap:tag"] = nodeChildTag.InnerText;
+                                                drTags["sap_tag"] = nodeChildTag.InnerText;
                                                 dtEntityTags.Rows.Add(drTags);
                                             }
                                         }
@@ -248,14 +262,14 @@ namespace SF_Entity_Metadata
                                         drProperty["Property_Name"] = nodeChildEntity.Attributes["Name"] != null ? nodeChildEntity.Attributes["Name"].Value : "";
                                         drProperty["Type"] = nodeChildEntity.Attributes["Type"] != null ? nodeChildEntity.Attributes["Type"].Value : "";
                                         drProperty["Nullable"] = nodeChildEntity.Attributes["Nullable"] != null ? nodeChildEntity.Attributes["Nullable"].Value : "";
-                                        drProperty["sap:required"] = nodeChildEntity.Attributes["sap:required"] != null ? nodeChildEntity.Attributes["sap:required"].Value : "";
-                                        drProperty["sap:creatable"] = nodeChildEntity.Attributes["sap:creatable"] != null ? nodeChildEntity.Attributes["sap:creatable"].Value : "";
-                                        drProperty["sap:updatable"] = nodeChildEntity.Attributes["sap:updatable"] != null ? nodeChildEntity.Attributes["sap:updatable"].Value : "";
-                                        drProperty["sap:upsertable"] = nodeChildEntity.Attributes["sap:upsertable"] != null ? nodeChildEntity.Attributes["sap:upsertable"].Value : "";
-                                        drProperty["sap:visible"] = nodeChildEntity.Attributes["sap:visible"] != null ? nodeChildEntity.Attributes["sap:visible"].Value : "";
-                                        drProperty["sap:sortable"] = nodeChildEntity.Attributes["sap:sortable"] != null ? nodeChildEntity.Attributes["sap:sortable"].Value : "";
-                                        drProperty["sap:filterable"] = nodeChildEntity.Attributes["sap:filterable"] != null ? nodeChildEntity.Attributes["sap:filterable"].Value : "";
-                                        drProperty["sap:label"] = nodeChildEntity.Attributes["sap:label"] != null ? nodeChildEntity.Attributes["sap:label"].Value : "";
+                                        drProperty["sap_required"] = nodeChildEntity.Attributes["sap:required"] != null ? nodeChildEntity.Attributes["sap:required"].Value : "";
+                                        drProperty["sap_creatable"] = nodeChildEntity.Attributes["sap:creatable"] != null ? nodeChildEntity.Attributes["sap:creatable"].Value : "";
+                                        drProperty["sap_updatable"] = nodeChildEntity.Attributes["sap:updatable"] != null ? nodeChildEntity.Attributes["sap:updatable"].Value : "";
+                                        drProperty["sap_upsertable"] = nodeChildEntity.Attributes["sap:upsertable"] != null ? nodeChildEntity.Attributes["sap:upsertable"].Value : "";
+                                        drProperty["sap_visible"] = nodeChildEntity.Attributes["sap:visible"] != null ? nodeChildEntity.Attributes["sap:visible"].Value : "";
+                                        drProperty["sap_sortable"] = nodeChildEntity.Attributes["sap:sortable"] != null ? nodeChildEntity.Attributes["sap:sortable"].Value : "";
+                                        drProperty["sap_filterable"] = nodeChildEntity.Attributes["sap:filterable"] != null ? nodeChildEntity.Attributes["sap:filterable"].Value : "";
+                                        drProperty["sap_label"] = nodeChildEntity.Attributes["sap:label"] != null ? nodeChildEntity.Attributes["sap:label"].Value : "";
                                         dtEntityProperty.Rows.Add(drProperty);
                                     }
                                     else if (nodeChildEntity.Name.Equals("NavigationProperty"))
@@ -263,18 +277,18 @@ namespace SF_Entity_Metadata
                                         drNavigationProperty = dtEntityNavigationProperty.NewRow();
                                         drNavigationProperty["EntityName"] = strEntityName;
                                         drNavigationProperty["NavigationProperty_Name"] = nodeChildEntity.Attributes["Name"] != null ? nodeChildEntity.Attributes["Name"].Value : "";
-                                        drNavigationProperty["sap:required"] = nodeChildEntity.Attributes["sap:required"] != null ? nodeChildEntity.Attributes["sap:required"].Value : "";
-                                        drNavigationProperty["sap:creatable"] = nodeChildEntity.Attributes["sap:creatable"] != null ? nodeChildEntity.Attributes["sap:creatable"].Value : "";
-                                        drNavigationProperty["sap:updatable"] = nodeChildEntity.Attributes["sap:updatable"] != null ? nodeChildEntity.Attributes["sap:updatable"].Value : "";
-                                        drNavigationProperty["sap:upsertable"] = nodeChildEntity.Attributes["sap:upsertable"] != null ? nodeChildEntity.Attributes["sap:upsertable"].Value : "";
-                                        drNavigationProperty["sap:visible"] = nodeChildEntity.Attributes["sap:visible"] != null ? nodeChildEntity.Attributes["sap:visible"].Value : "";
-                                        drNavigationProperty["sap:sortable"] = nodeChildEntity.Attributes["sap:sortable"] != null ? nodeChildEntity.Attributes["sap:sortable"].Value : "";
-                                        drNavigationProperty["sap:filterable"] = nodeChildEntity.Attributes["sap:filterable"] != null ? nodeChildEntity.Attributes["sap:filterable"].Value : "";
+                                        drNavigationProperty["sap_required"] = nodeChildEntity.Attributes["sap:required"] != null ? nodeChildEntity.Attributes["sap:required"].Value : "";
+                                        drNavigationProperty["sap_creatable"] = nodeChildEntity.Attributes["sap:creatable"] != null ? nodeChildEntity.Attributes["sap:creatable"].Value : "";
+                                        drNavigationProperty["sap_updatable"] = nodeChildEntity.Attributes["sap:updatable"] != null ? nodeChildEntity.Attributes["sap:updatable"].Value : "";
+                                        drNavigationProperty["sap_upsertable"] = nodeChildEntity.Attributes["sap:upsertable"] != null ? nodeChildEntity.Attributes["sap:upsertable"].Value : "";
+                                        drNavigationProperty["sap_visible"] = nodeChildEntity.Attributes["sap:visible"] != null ? nodeChildEntity.Attributes["sap:visible"].Value : "";
+                                        drNavigationProperty["sap_sortable"] = nodeChildEntity.Attributes["sap:sortable"] != null ? nodeChildEntity.Attributes["sap:sortable"].Value : "";
+                                        drNavigationProperty["sap_filterable"] = nodeChildEntity.Attributes["sap:filterable"] != null ? nodeChildEntity.Attributes["sap:filterable"].Value : "";
                                         drNavigationProperty["Relationship"] = nodeChildEntity.Attributes["Relationship"] != null ? nodeChildEntity.Attributes["Relationship"].Value : "";
                                         drNavigationProperty["FromRole"] = nodeChildEntity.Attributes["FromRole"] != null ? nodeChildEntity.Attributes["FromRole"].Value : "";
                                         drNavigationProperty["ToRole"] = nodeChildEntity.Attributes["ToRole"] != null ? nodeChildEntity.Attributes["ToRole"].Value : "";
-                                        drNavigationProperty["sap:field-control"] = nodeChildEntity.Attributes["sap:field-control"] != null ? nodeChildEntity.Attributes["sap:field-control"].Value : "";
-                                        drNavigationProperty["sap:label"] = nodeChildEntity.Attributes["sap:label"] != null ? nodeChildEntity.Attributes["sap:label"].Value : "";
+                                        drNavigationProperty["sap_field-control"] = nodeChildEntity.Attributes["sap:field-control"] != null ? nodeChildEntity.Attributes["sap:field-control"].Value : "";
+                                        drNavigationProperty["sap_label"] = nodeChildEntity.Attributes["sap:label"] != null ? nodeChildEntity.Attributes["sap:label"].Value : "";
                                         dtEntityNavigationProperty.Rows.Add(drNavigationProperty);
                                     }
                                 }
@@ -289,101 +303,163 @@ namespace SF_Entity_Metadata
             }
         }
 
-        private void dgvEntitySetList_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvEntitySetList_SelectionChanged(object sender, EventArgs e)
         {
-            //if ((dgvEntitySetList.Columns[e.ColumnIndex].HeaderText.Equals("EntityName")) &&
-            //    (e.RowIndex >= 0))
-            if (e.RowIndex >= 0)
+            if (bSearchPropertyClicked == false)
             {
-                //strSelectedEntityName = dgvEntitySetList[e.ColumnIndex, e.RowIndex].Value.ToString();
-                strSelectedEntityName = dgvEntitySetList[0, e.RowIndex].Value.ToString();
-                if (string.IsNullOrEmpty(strSelectedEntityName) == false)
+                DataGridView dgvLocal = (DataGridView)sender;
+                if (dgvLocal.SelectedRows.Count > 0)
                 {
-                    if ((dgvEntityTags.DataSource != null) && (dgvEntityTags.Rows.Count > 0))
-                    {
-                        dgvEntityTags.DataSource = null;
-                    }
-                    if ((dgvKey.DataSource != null) && (dgvKey.Rows.Count > 0))
-                    {
-                        dgvKey.DataSource = null;
-                    }
-                    if ((dgvProperty.DataSource != null) &&(dgvProperty.Rows.Count > 0))
-                    {
-                        dgvProperty.DataSource = null;
-                    }
-                    if ((dgvNavigation.DataSource != null) && (dgvNavigation.Rows.Count > 0))
-                    {
-                        dgvNavigation.DataSource = null;
-                    }
-                    string expression = "EntityName = '" + strSelectedEntityName + "'";
-                    DataRow[] tempRows = dtEntityTags.Select(expression);
-                    if ((tempRows != null) && (tempRows.Length > 0))
-                    {
-                        DataTable tempTable = tempRows.CopyToDataTable();//dtEntityTags.Select(expression).CopyToDataTable();
-                        dgvEntityTags.DataSource = tempTable;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No tags available", "Entity Tags", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    if (dgvLocal.SelectedRows[0].Selected == true)
+                    { //strSelectedEntityName = dgvEntitySetList[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        strSelectedEntityName = dgvLocal.SelectedRows[0].Cells[0].Value.ToString(); //dgvEntitySetList[0, e.RowIndex].Value.ToString();
+                        if (string.IsNullOrEmpty(strSelectedEntityName) == false)
+                        {
+                            if ((dgvEntityTags.DataSource != null) && (dgvEntityTags.Rows.Count > 0))
+                            {
+                                dgvEntityTags.DataSource = null;
+                            }
+                            if ((dgvKey.DataSource != null) && (dgvKey.Rows.Count > 0))
+                            {
+                                dgvKey.DataSource = null;
+                            }
+                            if ((dgvProperty.DataSource != null) && (dgvProperty.Rows.Count > 0))
+                            {
+                                dgvProperty.DataSource = null;
+                            }
+                            if ((dgvNavigation.DataSource != null) && (dgvNavigation.Rows.Count > 0))
+                            {
+                                dgvNavigation.DataSource = null;
+                            }
+                            string expression = "EntityName = '" + strSelectedEntityName + "'";
+                            DataRow[] tempRows = dtEntityTags.Select(expression);
+                            if ((tempRows != null) && (tempRows.Length > 0))
+                            {
+                                DataTable tempTable = tempRows.CopyToDataTable();//dtEntityTags.Select(expression).CopyToDataTable();
+                                dgvEntityTags.DataSource = tempTable;
+                            }
+                            //else
+                            //{
+                            //    MessageBox.Show("No tags available", "Entity Tags", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //}
 
-                    tempRows = dtEntityKey.Select(expression);
-                    if ((tempRows != null) && (tempRows.Length > 0))
-                    {
-                        DataTable tempTable = tempRows.CopyToDataTable();//dtEntityTags.Select(expression).CopyToDataTable();
-                        dgvKey.DataSource = tempTable;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Keys available", "Entity Keys", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                            tempRows = dtEntityKey.Select(expression);
+                            if ((tempRows != null) && (tempRows.Length > 0))
+                            {
+                                DataTable tempTable = tempRows.CopyToDataTable();//dtEntityTags.Select(expression).CopyToDataTable();
+                                dgvKey.DataSource = tempTable;
+                            }
+                            //else
+                            //{
+                            //    MessageBox.Show("No Keys available", "Entity Keys", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //}
 
-                    tempRows = dtEntityProperty.Select(expression);
-                    if ((tempRows != null) && (tempRows.Length > 0))
-                    {
-                        DataTable tempTable = tempRows.CopyToDataTable();
-                        dgvProperty.DataSource = tempTable;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Properties available", "Entity Property", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                            tempRows = dtEntityProperty.Select(expression);
+                            if ((tempRows != null) && (tempRows.Length > 0))
+                            {
+                                DataTable tempTable = tempRows.CopyToDataTable();
+                                dgvProperty.DataSource = tempTable;
+                            }
+                            //else
+                            //{
+                            //    MessageBox.Show("No Properties available", "Entity Property", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //}
 
-                    tempRows = dtEntityNavigationProperty.Select(expression);
-                    if ((tempRows != null) && (tempRows.Length > 0))
-                    {
-                        DataTable tempTable = tempRows.CopyToDataTable();
-                        dgvNavigation.DataSource = tempTable;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Navigation properties available", "Navigation properties", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            tempRows = dtEntityNavigationProperty.Select(expression);
+                            if ((tempRows != null) && (tempRows.Length > 0))
+                            {
+                                DataTable tempTable = tempRows.CopyToDataTable();
+                                dgvNavigation.DataSource = tempTable;
+                            }
+                            //else
+                            //{
+                            //    MessageBox.Show("No Navigation properties available", "Navigation properties", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //}
+                        }
                     }
                 }
             }
         }
+
+        //private void dgvEntitySetList_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    //if ((dgvEntitySetList.Columns[e.ColumnIndex].HeaderText.Equals("EntityName")) &&
+        //    //    (e.RowIndex >= 0))
+        //    if (e.RowIndex >= 0)
+        //    {
+        //        //strSelectedEntityName = dgvEntitySetList[e.ColumnIndex, e.RowIndex].Value.ToString();
+        //        strSelectedEntityName = dgvEntitySetList[0, e.RowIndex].Value.ToString();
+        //        if (string.IsNullOrEmpty(strSelectedEntityName) == false)
+        //        {
+        //            if ((dgvEntityTags.DataSource != null) && (dgvEntityTags.Rows.Count > 0))
+        //            {
+        //                dgvEntityTags.DataSource = null;
+        //            }
+        //            if ((dgvKey.DataSource != null) && (dgvKey.Rows.Count > 0))
+        //            {
+        //                dgvKey.DataSource = null;
+        //            }
+        //            if ((dgvProperty.DataSource != null) && (dgvProperty.Rows.Count > 0))
+        //            {
+        //                dgvProperty.DataSource = null;
+        //            }
+        //            if ((dgvNavigation.DataSource != null) && (dgvNavigation.Rows.Count > 0))
+        //            {
+        //                dgvNavigation.DataSource = null;
+        //            }
+        //            string expression = "EntityName = '" + strSelectedEntityName + "'";
+        //            DataRow[] tempRows = dtEntityTags.Select(expression);
+        //            if ((tempRows != null) && (tempRows.Length > 0))
+        //            {
+        //                DataTable tempTable = tempRows.CopyToDataTable();//dtEntityTags.Select(expression).CopyToDataTable();
+        //                dgvEntityTags.DataSource = tempTable;
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("No tags available", "Entity Tags", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            }
+
+        //            tempRows = dtEntityKey.Select(expression);
+        //            if ((tempRows != null) && (tempRows.Length > 0))
+        //            {
+        //                DataTable tempTable = tempRows.CopyToDataTable();//dtEntityTags.Select(expression).CopyToDataTable();
+        //                dgvKey.DataSource = tempTable;
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("No Keys available", "Entity Keys", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            }
+
+        //            tempRows = dtEntityProperty.Select(expression);
+        //            if ((tempRows != null) && (tempRows.Length > 0))
+        //            {
+        //                DataTable tempTable = tempRows.CopyToDataTable();
+        //                dgvProperty.DataSource = tempTable;
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("No Properties available", "Entity Property", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            }
+
+        //            tempRows = dtEntityNavigationProperty.Select(expression);
+        //            if ((tempRows != null) && (tempRows.Length > 0))
+        //            {
+        //                DataTable tempTable = tempRows.CopyToDataTable();
+        //                dgvNavigation.DataSource = tempTable;
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("No Navigation properties available", "Navigation properties", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            }
+        //        }
+        //    }
+        //}
 
         private void btnSearchEntity_Click(object sender, EventArgs e)
         {
             //dgvEntitySetList.
             ////string expression = String.Format(" Name LIKE '%{0}%' ", tbSearchEntity.Text))
             ///
-            if ((dgvEntityTags.DataSource != null) && (dgvEntityTags.Rows.Count > 0))
-            {
-                dgvEntityTags.DataSource = null;
-            }
-            if ((dgvKey.DataSource != null) && (dgvKey.Rows.Count > 0))
-            {
-                dgvKey.DataSource = null;
-            }
-            if ((dgvProperty.DataSource != null) && (dgvProperty.Rows.Count > 0))
-            {
-                dgvProperty.DataSource = null;
-            }
-            if ((dgvNavigation.DataSource != null) && (dgvNavigation.Rows.Count > 0))
-            {
-                dgvNavigation.DataSource = null;
-            }
             if (string.IsNullOrEmpty(tbSearchEntity.Text) == false)
             {
                 //string expression = String.Format(" {0} LIKE '{1}%' ", cmbColNames.Text, tbSearchEntity.Text);
@@ -393,11 +469,32 @@ namespace SF_Entity_Metadata
                 {
                     DataTable tempTable = tempRows.CopyToDataTable();
                     dgvEntitySetList.DataSource = tempTable;
+
+                    //reset all other DGV's to empty
+                    if ((dgvEntityTags.DataSource != null) && (dgvEntityTags.Rows.Count > 0))
+                    {
+                        dgvEntityTags.DataSource = null;
+                    }
+                    if ((dgvKey.DataSource != null) && (dgvKey.Rows.Count > 0))
+                    {
+                        dgvKey.DataSource = null;
+                    }
+                    if ((dgvProperty.DataSource != null) && (dgvProperty.Rows.Count > 0))
+                    {
+                        dgvProperty.DataSource = null;
+                    }
+                    if ((dgvNavigation.DataSource != null) && (dgvNavigation.Rows.Count > 0))
+                    {
+                        dgvNavigation.DataSource = null;
+                    }
+
+                    dgvEntitySetList.Rows[0].Selected = false;
+                    //dgvEntitySetList.Rows[0].Selected = true;
                 }
                 else
                 {
                     MessageBox.Show("No match found", "Search Entities", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgvEntitySetList.DataSource = dtEntitySet;
+                    //dgvEntitySetList.DataSource = dtEntitySet;
                 }
             }
             else
@@ -405,22 +502,106 @@ namespace SF_Entity_Metadata
                 dgvEntitySetList.DataSource = dtEntitySet;
             }
         }
+        private void btnSearchPropColumn_Click(object sender, EventArgs e)
+        {
+            bSearchPropertyClicked = true;
+            try
+            {
+                //dgvEntitySetList.
+                ////string expression = String.Format(" Name LIKE '%{0}%' ", tbSearchEntity.Text))
+                ///
+                if (string.IsNullOrEmpty(tbPropSearch.Text) == false)
+                {
+                    //string expression = String.Format(" {0} LIKE '{1}%' ", cmbColNames.Text, tbSearchEntity.Text);
+                    string expression = String.Format(" {0} LIKE '{1}' ", cmbPropColumn.Text, tbPropSearch.Text);
+                    DataRow[] tempRows = dtEntityProperty.Select(expression);
+                    if ((tempRows != null) && (tempRows.Length > 0))
+                    {
+                        DataTable tempTable = tempRows.CopyToDataTable();
+                        dgvProperty.DataSource = tempTable;
+
+                        //reset all other DGV's to empty except Entity Properties
+                        //if ((dgvEntitySetList.DataSource != null) && (dgvEntitySetList.Rows.Count > 0))
+                        //{
+                        //    dgvEntitySetList.DataSource = null;
+                        //}
+                        if ((dgvEntityTags.DataSource != null) && (dgvEntityTags.Rows.Count > 0))
+                        {
+                            dgvEntityTags.DataSource = null;
+                        }
+                        if ((dgvKey.DataSource != null) && (dgvKey.Rows.Count > 0))
+                        {
+                            dgvKey.DataSource = null;
+                        }
+                        //if ((dgvProperty.DataSource != null) && (dgvProperty.Rows.Count > 0))
+                        //{
+                        //    dgvProperty.DataSource = null;
+                        //}
+                        if ((dgvNavigation.DataSource != null) && (dgvNavigation.Rows.Count > 0))
+                        {
+                            dgvNavigation.DataSource = null;
+                        }
+
+                        //Now populate dgvEntitySetList with those entities available in dgvProperties
+                        string[] TobeDistinct = { dtEntityProperty.Columns[0].ColumnName };
+                        DataTable tempTableEntityName = tempTable.DefaultView.ToTable(true, TobeDistinct);
+                        expression = "";
+                        foreach (DataRow itemRow in tempTableEntityName.Rows)
+                        {
+                            if (string.IsNullOrEmpty(expression) == false)
+                            {
+                                expression += " OR ";
+                            }
+                            expression += " EntityName = '" + itemRow[0].ToString() + "'";
+                        }
+                        DataRow[] tempRowsFilter = dtEntitySet.Select(expression);
+                        if ((tempRowsFilter != null) && (tempRowsFilter.Length > 0))
+                        {
+                            DataTable tempFilterTable = tempRowsFilter.CopyToDataTable();
+                            dgvEntitySetList.DataSource = tempFilterTable;
+
+                            dgvEntitySetList.Rows[0].Selected = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No match found", "Search Entities", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //dgvEntitySetList.DataSource = dtEntitySet;
+                    }
+                }
+                else
+                {
+                    dgvEntitySetList.DataSource = dtEntitySet;
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                bSearchPropertyClicked = false;
+            }
+
+        }
 
         private void btnBuildQuery_Click(object sender, EventArgs e)
         {
             string sEntityName = string.Empty;
             string sFilter = string.Empty;
             string sSelect = string.Empty;
+            string sExpand = string.Empty;
+            string sQuery = sfConfigObject.apiurl;
 
             if (dgvEntitySetList.SelectedRows != null)
             {
                 sEntityName = dgvEntitySetList.SelectedRows[0].Cells[0].Value.ToString();
-                
-                if(dgvKey.SelectedRows != null)
+                sQuery += sEntityName + "?$format=json";
+                if (dgvKey.SelectedRows != null)
                 {
                     foreach (DataGridViewRow itemSelected in dgvKey.SelectedRows)
                     {
-                        if(string.IsNullOrEmpty(sFilter) == false)
+                        if (string.IsNullOrEmpty(sFilter) == false)
                         {
                             sFilter += "& ";
                         }
@@ -429,6 +610,10 @@ namespace SF_Entity_Metadata
                             sFilter = "filter=";
                         }
                         sFilter += itemSelected.Cells[1].Value.ToString() + " eq " + "'[Enter Value]' ";
+                    }
+                    if(string.IsNullOrEmpty(sFilter) == false)
+                    {
+                        sQuery += "&$" + sFilter;
                     }
                 }
                 if (dgvProperty.SelectedRows != null)
@@ -445,10 +630,42 @@ namespace SF_Entity_Metadata
                         }
                         sSelect += itemSelected.Cells[1].Value.ToString();
                     }
-                }
-
+                    if(string.IsNullOrEmpty (sSelect) == false)
+                    {
+                        sQuery += "&$" + sSelect;
                     }
-
                 }
+                if (dgvNavigation.SelectedRows != null)
+                {
+                    foreach (DataGridViewRow itemSelected in dgvNavigation.SelectedRows)
+                    {
+                        if (string.IsNullOrEmpty(sExpand) == false)
+                        {
+                            sExpand += ",";
+                        }
+                        else
+                        {
+                            sExpand = "expand=";
+                        }
+                        sExpand += itemSelected.Cells[1].Value.ToString();
+                    }
+                    if(string.IsNullOrEmpty(sExpand) == false)
+                    {
+                        sQuery += "&$" + sExpand;
+                    }
+                }
+            }
+
+            if(sQuery.Equals(sfConfigObject.apiurl) == false)
+            {
+                tbQuery.Text = sQuery;
+            }
+        }
+
+        private void btnExecute_Click(object sender, EventArgs e)
+        {
+            formQueryExecutor dlgQueryExecutor = new formQueryExecutor(tbQuery.Text, sfConfigObject);
+            dlgQueryExecutor.ShowDialog();
+        }
     }
 }

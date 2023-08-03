@@ -55,6 +55,12 @@
     <Compile Include="formEntityView.Designer.cs">
       <DependentUpon>formEntityView.cs</DependentUpon>
     </Compile>
+    <Compile Include="formQueryExecutor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formQueryExecutor.Designer.cs">
+      <DependentUpon>formQueryExecutor.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="formEntityView.resx">
       <DependentUpon>formEntityView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formQueryExecutor.resx">
+      <DependentUpon>formQueryExecutor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
