@@ -57,7 +57,9 @@ namespace SF_Entity_Metadata
             dtEntityTags.Columns.Add("sap_tag");
 
             dtEntityKey = new DataTable();
-            dtEntityKey.Columns.Add("EntityName"); dtEntityKey.Columns.Add("Key_Name");
+            dtEntityKey.Columns.Add("X", typeof(bool));
+            dtEntityKey.Columns.Add("EntityName"); 
+            dtEntityKey.Columns.Add("Key_Name");
 
             dtEntityProperty = new DataTable();
             dtEntityProperty.Columns.Add("EntityName");
@@ -142,6 +144,15 @@ namespace SF_Entity_Metadata
                     dgvEntitySetList.DataSource = dtEntitySet;
                     dgvEntityTags.DataSource = dtEntityTags;
                     dgvKey.DataSource = dtEntityKey;
+
+                    //foreach (DataGridViewRow row in dgvKey.Rows)
+                    //{
+                    //    row.ReadOnly = true;
+                    //    row.Cells["X"].ReadOnly = false;
+                    //}
+                    dgvKey.Columns["X"].Width = 10;
+                    //dgvKey.Columns["X"].FillWeight = 40;
+
                     dgvProperty.DataSource = dtEntityProperty;
                     dgvNavigation.DataSource = dtEntityNavigationProperty;
 
@@ -250,6 +261,7 @@ namespace SF_Entity_Metadata
                                         foreach (XmlNode nodeChildKey in nodeChildEntity.ChildNodes)
                                         {
                                             drKey = dtEntityKey.NewRow();
+                                            drKey["X"] = false;
                                             drKey["EntityName"] = strEntityName;
                                             drKey["Key_Name"] = nodeChildKey.Attributes["Name"] != null ? nodeChildKey.Attributes["Name"].Value : "";
                                             dtEntityKey.Rows.Add(drKey);
@@ -599,17 +611,21 @@ namespace SF_Entity_Metadata
                 sQuery += sEntityName + "?$format=json";
                 if (dgvKey.SelectedRows != null)
                 {
-                    foreach (DataGridViewRow itemSelected in dgvKey.SelectedRows)
+                    //foreach (DataGridViewRow itemSelected in dgvKey.SelectedRows)
+                    foreach (DataGridViewRow itemSelected in dgvKey.Rows)
                     {
-                        if (string.IsNullOrEmpty(sFilter) == false)
+                        if ((bool)itemSelected.Cells[0].Value == true)
                         {
-                            sFilter += "& ";
+                            if (string.IsNullOrEmpty(sFilter) == false)
+                            {
+                                sFilter += "& ";
+                            }
+                            else
+                            {
+                                sFilter = "filter=";
+                            }
+                            sFilter += itemSelected.Cells[2].Value.ToString() + " eq " + "'[Enter Value]' ";
                         }
-                        else
-                        {
-                            sFilter = "filter=";
-                        }
-                        sFilter += itemSelected.Cells[1].Value.ToString() + " eq " + "'[Enter Value]' ";
                     }
                     if(string.IsNullOrEmpty(sFilter) == false)
                     {
@@ -666,6 +682,42 @@ namespace SF_Entity_Metadata
         {
             formQueryExecutor dlgQueryExecutor = new formQueryExecutor(tbQuery.Text, sfConfigObject);
             dlgQueryExecutor.ShowDialog();
+        }
+
+        private void dgvKey_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvKey_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvKey.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+            {
+                dgvKey.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dgvKey_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (dgvKey.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+            {
+                if (e.RowIndex == -1)
+                {
+                    if (dgvKey.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+                    {
+                        foreach (DataGridViewRow rowitem in dgvKey.Rows)
+                        {
+                            //rowitem.Cells[e.ColumnIndex].Value = !(bool)rowitem.Cells[e.ColumnIndex].Value;
+                            rowitem.Cells[0].Value = !(bool)rowitem.Cells[0].Value;
+                        }
+                    }
+                }
+                else //if (dgvKey.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+                {
+                    //dgvKey.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = !(bool)dgvKey.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    dgvKey.Rows[e.RowIndex].Cells[0].Value = !(bool)dgvKey.Rows[e.RowIndex].Cells[0].Value;
+                }
+            }
         }
     }
 }
