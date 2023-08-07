@@ -45,10 +45,10 @@ namespace SF_Entity_Metadata
             dtEntitySet.Columns.Add("EntityName");
             dtEntitySet.Columns.Add("EntityType");
             dtEntitySet.Columns.Add("sap_label");
-            dtEntitySet.Columns.Add("sap_creatable");
-            dtEntitySet.Columns.Add("sap_updatable");
-            dtEntitySet.Columns.Add("sap_upsertable");
-            dtEntitySet.Columns.Add("sap_deletable");
+            //dtEntitySet.Columns.Add("sap_creatable");
+            //dtEntitySet.Columns.Add("sap_updatable");
+            //dtEntitySet.Columns.Add("sap_upsertable");
+            //dtEntitySet.Columns.Add("sap_deletable");
             dtEntitySet.Columns.Add("Summary");
             dtEntitySet.Columns.Add("LongDescription");
 
@@ -64,25 +64,25 @@ namespace SF_Entity_Metadata
             dtEntityProperty.Columns.Add("Property_Name");
             dtEntityProperty.Columns.Add("Type");
             dtEntityProperty.Columns.Add("Nullable");
-            dtEntityProperty.Columns.Add("sap_required");
-            dtEntityProperty.Columns.Add("sap_creatable");
-            dtEntityProperty.Columns.Add("sap_updatable");
-            dtEntityProperty.Columns.Add("sap_upsertable");
+            //dtEntityProperty.Columns.Add("sap_required");
+            //dtEntityProperty.Columns.Add("sap_creatable");
+            //dtEntityProperty.Columns.Add("sap_updatable");
+            //dtEntityProperty.Columns.Add("sap_upsertable");
             dtEntityProperty.Columns.Add("sap_visible");
-            dtEntityProperty.Columns.Add("sap_sortable");
-            dtEntityProperty.Columns.Add("sap_filterable");
+            //dtEntityProperty.Columns.Add("sap_sortable");
+            //dtEntityProperty.Columns.Add("sap_filterable");
             dtEntityProperty.Columns.Add("sap_label");
 
             dtEntityNavigationProperty = new DataTable();
             dtEntityNavigationProperty.Columns.Add("EntityName");
             dtEntityNavigationProperty.Columns.Add("NavigationProperty_Name");
-            dtEntityNavigationProperty.Columns.Add("sap_required");
-            dtEntityNavigationProperty.Columns.Add("sap_creatable");
-            dtEntityNavigationProperty.Columns.Add("sap_updatable");
-            dtEntityNavigationProperty.Columns.Add("sap_upsertable");
-            dtEntityNavigationProperty.Columns.Add("sap_visible");
-            dtEntityNavigationProperty.Columns.Add("sap_sortable");
-            dtEntityNavigationProperty.Columns.Add("sap_filterable");
+            //dtEntityNavigationProperty.Columns.Add("sap_required");
+            //dtEntityNavigationProperty.Columns.Add("sap_creatable");
+            //dtEntityNavigationProperty.Columns.Add("sap_updatable");
+            //dtEntityNavigationProperty.Columns.Add("sap_upsertable");
+            //dtEntityNavigationProperty.Columns.Add("sap_visible");
+            //dtEntityNavigationProperty.Columns.Add("sap_sortable");
+            //dtEntityNavigationProperty.Columns.Add("sap_filterable");
             dtEntityNavigationProperty.Columns.Add("Relationship");
             dtEntityNavigationProperty.Columns.Add("FromRole");
             dtEntityNavigationProperty.Columns.Add("ToRole");
@@ -180,10 +180,10 @@ namespace SF_Entity_Metadata
                             dr["EntityName"] = strEntityName = nodeEntitySet.Attributes["Name"].Value.ToString();
                             dr["EntityType"] = nodeEntitySet.Attributes["EntityType"] != null ? nodeEntitySet.Attributes["EntityType"].Value.ToString() : "";
                             dr["sap_label"] = nodeEntitySet.Attributes["sap:label"] != null ? nodeEntitySet.Attributes["sap:label"].Value.ToString() : "";
-                            dr["sap_creatable"] = nodeEntitySet.Attributes["sap:creatable"] != null ? nodeEntitySet.Attributes["sap:creatable"].Value.ToString() : "";
-                            dr["sap_updatable"] = nodeEntitySet.Attributes["sap:updatable"] != null ? nodeEntitySet.Attributes["sap:updatable"].Value.ToString() : "";
-                            dr["sap_upsertable"] = nodeEntitySet.Attributes["sap:upsertable"] != null ? nodeEntitySet.Attributes["sap:upsertable"].Value.ToString() : "";
-                            dr["sap_deletable"] = nodeEntitySet.Attributes["sap:deletable"] != null ? nodeEntitySet.Attributes["sap:deletable"].Value.ToString() : "";
+                            //dr["sap_creatable"] = nodeEntitySet.Attributes["sap:creatable"] != null ? nodeEntitySet.Attributes["sap:creatable"].Value.ToString() : "";
+                            //dr["sap_updatable"] = nodeEntitySet.Attributes["sap:updatable"] != null ? nodeEntitySet.Attributes["sap:updatable"].Value.ToString() : "";
+                            //dr["sap_upsertable"] = nodeEntitySet.Attributes["sap:upsertable"] != null ? nodeEntitySet.Attributes["sap:upsertable"].Value.ToString() : "";
+                            //dr["sap_deletable"] = nodeEntitySet.Attributes["sap:deletable"] != null ? nodeEntitySet.Attributes["sap:deletable"].Value.ToString() : "";
 
                             //now get child
                             nodeDocumentation = nodeEntitySet.HasChildNodes == true ? nodeEntitySet.ChildNodes[0] : null;
@@ -199,7 +199,7 @@ namespace SF_Entity_Metadata
                                     {
                                         dr["LongDescription"] = nodeChildDocument.InnerText;
                                     }
-                                    else if (nodeChildDocument.Name.Equals("sap_tagcollection"))
+                                    else if (nodeChildDocument.Name.Equals("sap:tagcollection"))
                                     {
                                         if (nodeChildDocument.HasChildNodes == true)
                                         {
@@ -262,13 +262,13 @@ namespace SF_Entity_Metadata
                                         drProperty["Property_Name"] = nodeChildEntity.Attributes["Name"] != null ? nodeChildEntity.Attributes["Name"].Value : "";
                                         drProperty["Type"] = nodeChildEntity.Attributes["Type"] != null ? nodeChildEntity.Attributes["Type"].Value : "";
                                         drProperty["Nullable"] = nodeChildEntity.Attributes["Nullable"] != null ? nodeChildEntity.Attributes["Nullable"].Value : "";
-                                        drProperty["sap_required"] = nodeChildEntity.Attributes["sap:required"] != null ? nodeChildEntity.Attributes["sap:required"].Value : "";
-                                        drProperty["sap_creatable"] = nodeChildEntity.Attributes["sap:creatable"] != null ? nodeChildEntity.Attributes["sap:creatable"].Value : "";
-                                        drProperty["sap_updatable"] = nodeChildEntity.Attributes["sap:updatable"] != null ? nodeChildEntity.Attributes["sap:updatable"].Value : "";
-                                        drProperty["sap_upsertable"] = nodeChildEntity.Attributes["sap:upsertable"] != null ? nodeChildEntity.Attributes["sap:upsertable"].Value : "";
+                                        //drProperty["sap_required"] = nodeChildEntity.Attributes["sap:required"] != null ? nodeChildEntity.Attributes["sap:required"].Value : "";
+                                        //drProperty["sap_creatable"] = nodeChildEntity.Attributes["sap:creatable"] != null ? nodeChildEntity.Attributes["sap:creatable"].Value : "";
+                                        //drProperty["sap_updatable"] = nodeChildEntity.Attributes["sap:updatable"] != null ? nodeChildEntity.Attributes["sap:updatable"].Value : "";
+                                        //drProperty["sap_upsertable"] = nodeChildEntity.Attributes["sap:upsertable"] != null ? nodeChildEntity.Attributes["sap:upsertable"].Value : "";
                                         drProperty["sap_visible"] = nodeChildEntity.Attributes["sap:visible"] != null ? nodeChildEntity.Attributes["sap:visible"].Value : "";
-                                        drProperty["sap_sortable"] = nodeChildEntity.Attributes["sap:sortable"] != null ? nodeChildEntity.Attributes["sap:sortable"].Value : "";
-                                        drProperty["sap_filterable"] = nodeChildEntity.Attributes["sap:filterable"] != null ? nodeChildEntity.Attributes["sap:filterable"].Value : "";
+                                        //drProperty["sap_sortable"] = nodeChildEntity.Attributes["sap:sortable"] != null ? nodeChildEntity.Attributes["sap:sortable"].Value : "";
+                                        //drProperty["sap_filterable"] = nodeChildEntity.Attributes["sap:filterable"] != null ? nodeChildEntity.Attributes["sap:filterable"].Value : "";
                                         drProperty["sap_label"] = nodeChildEntity.Attributes["sap:label"] != null ? nodeChildEntity.Attributes["sap:label"].Value : "";
                                         dtEntityProperty.Rows.Add(drProperty);
                                     }
@@ -277,13 +277,13 @@ namespace SF_Entity_Metadata
                                         drNavigationProperty = dtEntityNavigationProperty.NewRow();
                                         drNavigationProperty["EntityName"] = strEntityName;
                                         drNavigationProperty["NavigationProperty_Name"] = nodeChildEntity.Attributes["Name"] != null ? nodeChildEntity.Attributes["Name"].Value : "";
-                                        drNavigationProperty["sap_required"] = nodeChildEntity.Attributes["sap:required"] != null ? nodeChildEntity.Attributes["sap:required"].Value : "";
-                                        drNavigationProperty["sap_creatable"] = nodeChildEntity.Attributes["sap:creatable"] != null ? nodeChildEntity.Attributes["sap:creatable"].Value : "";
-                                        drNavigationProperty["sap_updatable"] = nodeChildEntity.Attributes["sap:updatable"] != null ? nodeChildEntity.Attributes["sap:updatable"].Value : "";
-                                        drNavigationProperty["sap_upsertable"] = nodeChildEntity.Attributes["sap:upsertable"] != null ? nodeChildEntity.Attributes["sap:upsertable"].Value : "";
-                                        drNavigationProperty["sap_visible"] = nodeChildEntity.Attributes["sap:visible"] != null ? nodeChildEntity.Attributes["sap:visible"].Value : "";
-                                        drNavigationProperty["sap_sortable"] = nodeChildEntity.Attributes["sap:sortable"] != null ? nodeChildEntity.Attributes["sap:sortable"].Value : "";
-                                        drNavigationProperty["sap_filterable"] = nodeChildEntity.Attributes["sap:filterable"] != null ? nodeChildEntity.Attributes["sap:filterable"].Value : "";
+                                        //drNavigationProperty["sap_required"] = nodeChildEntity.Attributes["sap:required"] != null ? nodeChildEntity.Attributes["sap:required"].Value : "";
+                                        //drNavigationProperty["sap_creatable"] = nodeChildEntity.Attributes["sap:creatable"] != null ? nodeChildEntity.Attributes["sap:creatable"].Value : "";
+                                        //drNavigationProperty["sap_updatable"] = nodeChildEntity.Attributes["sap:updatable"] != null ? nodeChildEntity.Attributes["sap:updatable"].Value : "";
+                                        //drNavigationProperty["sap_upsertable"] = nodeChildEntity.Attributes["sap:upsertable"] != null ? nodeChildEntity.Attributes["sap:upsertable"].Value : "";
+                                        //drNavigationProperty["sap_visible"] = nodeChildEntity.Attributes["sap:visible"] != null ? nodeChildEntity.Attributes["sap:visible"].Value : "";
+                                        //drNavigationProperty["sap_sortable"] = nodeChildEntity.Attributes["sap:sortable"] != null ? nodeChildEntity.Attributes["sap:sortable"].Value : "";
+                                        //drNavigationProperty["sap_filterable"] = nodeChildEntity.Attributes["sap:filterable"] != null ? nodeChildEntity.Attributes["sap:filterable"].Value : "";
                                         drNavigationProperty["Relationship"] = nodeChildEntity.Attributes["Relationship"] != null ? nodeChildEntity.Attributes["Relationship"].Value : "";
                                         drNavigationProperty["FromRole"] = nodeChildEntity.Attributes["FromRole"] != null ? nodeChildEntity.Attributes["FromRole"].Value : "";
                                         drNavigationProperty["ToRole"] = nodeChildEntity.Attributes["ToRole"] != null ? nodeChildEntity.Attributes["ToRole"].Value : "";
