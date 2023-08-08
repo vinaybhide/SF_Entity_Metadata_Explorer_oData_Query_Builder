@@ -1,0 +1,11 @@
+<root>
+  <companyid></companyid>
+  <userid></userid>
+  <clientid></clientid>
+  <clientsecret></clientsecret>
+  <apiurl>https://api19.sapsf.com/odata/v2/</apiurl>
+  <assertionurl>https://api19.sapsf.com/oauth/idp</assertionurl>
+  <granttype>urn:ietf:params:oauth:grant-type:saml2-bearer</granttype>
+  <tokenurl>https://api19.sapsf.com/oauth/token</tokenurl>
+  <metadataurl>$metadata</metadataurl>
+</root>

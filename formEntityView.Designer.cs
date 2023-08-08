@@ -128,17 +128,14 @@
             this.dgvKey.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvKey.Size = new System.Drawing.Size(711, 142);
             this.dgvKey.TabIndex = 24;
-            this.dgvKey.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKey_CellContentClick_1);
+            this.dgvKey.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKey_CellContentClick);
             this.dgvKey.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKey_CellValueChanged);
             // 
             // dgvProperty
             // 
             this.dgvProperty.AllowUserToAddRows = false;
             this.dgvProperty.AllowUserToDeleteRows = false;
-            this.dgvProperty.AllowUserToResizeRows = false;
-            this.dgvProperty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvProperty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvProperty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,27 +144,27 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvProperty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvProperty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProperty.ColumnHeadersHeight = 34;
+            this.dgvProperty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProperty.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvProperty.EnableHeadersVisualStyles = false;
-            this.dgvProperty.Location = new System.Drawing.Point(6, 33);
+            this.dgvProperty.Location = new System.Drawing.Point(3, 25);
             this.dgvProperty.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProperty.Name = "dgvProperty";
             this.dgvProperty.RowHeadersVisible = false;
-            this.dgvProperty.RowHeadersWidth = 62;
+            this.dgvProperty.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvProperty.RowTemplate.Height = 28;
             this.dgvProperty.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProperty.Size = new System.Drawing.Size(664, 141);
+            this.dgvProperty.Size = new System.Drawing.Size(673, 172);
             this.dgvProperty.TabIndex = 25;
+            this.dgvProperty.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProperty_CellContentClick);
+            this.dgvProperty.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProperty_CellValueChanged);
             // 
             // dgvNavigation
             // 
             this.dgvNavigation.AllowUserToAddRows = false;
             this.dgvNavigation.AllowUserToDeleteRows = false;
-            this.dgvNavigation.AllowUserToResizeRows = false;
-            this.dgvNavigation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvNavigation.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvNavigation.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -176,18 +173,21 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvNavigation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvNavigation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNavigation.ColumnHeadersHeight = 34;
+            this.dgvNavigation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNavigation.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvNavigation.EnableHeadersVisualStyles = false;
-            this.dgvNavigation.Location = new System.Drawing.Point(5, 33);
+            this.dgvNavigation.Location = new System.Drawing.Point(3, 25);
             this.dgvNavigation.Margin = new System.Windows.Forms.Padding(2);
             this.dgvNavigation.Name = "dgvNavigation";
             this.dgvNavigation.RowHeadersVisible = false;
-            this.dgvNavigation.RowHeadersWidth = 62;
+            this.dgvNavigation.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvNavigation.RowTemplate.Height = 28;
             this.dgvNavigation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNavigation.Size = new System.Drawing.Size(664, 141);
+            this.dgvNavigation.Size = new System.Drawing.Size(673, 172);
             this.dgvNavigation.TabIndex = 26;
+            this.dgvNavigation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNavigation_CellContentClick);
+            this.dgvNavigation.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNavigation_CellValueChanged);
             // 
             // tbSearchEntity
             // 

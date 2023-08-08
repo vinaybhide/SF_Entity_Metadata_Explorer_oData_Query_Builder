@@ -58,10 +58,11 @@ namespace SF_Entity_Metadata
 
             dtEntityKey = new DataTable();
             dtEntityKey.Columns.Add("X", typeof(bool));
-            dtEntityKey.Columns.Add("EntityName"); 
+            dtEntityKey.Columns.Add("EntityName");
             dtEntityKey.Columns.Add("Key_Name");
 
             dtEntityProperty = new DataTable();
+            dtEntityProperty.Columns.Add("X", typeof(bool));
             dtEntityProperty.Columns.Add("EntityName");
             dtEntityProperty.Columns.Add("Property_Name");
             dtEntityProperty.Columns.Add("Type");
@@ -76,6 +77,7 @@ namespace SF_Entity_Metadata
             dtEntityProperty.Columns.Add("sap_label");
 
             dtEntityNavigationProperty = new DataTable();
+            dtEntityNavigationProperty.Columns.Add("X", typeof(bool));
             dtEntityNavigationProperty.Columns.Add("EntityName");
             dtEntityNavigationProperty.Columns.Add("NavigationProperty_Name");
             //dtEntityNavigationProperty.Columns.Add("sap_required");
@@ -154,11 +156,17 @@ namespace SF_Entity_Metadata
                     //dgvKey.Columns["X"].FillWeight = 40;
 
                     dgvProperty.DataSource = dtEntityProperty;
+                    dgvProperty.Columns["X"].Width = 10;
+
                     dgvNavigation.DataSource = dtEntityNavigationProperty;
+                    dgvNavigation.Columns["X"].Width = 10;
 
                     foreach (DataColumn colName in dtEntitySet.Columns)
                     {
-                        cmbColNames.Items.Add(colName.ColumnName);
+                        if (colName.ColumnName.Equals("X") == false)
+                        {
+                            cmbColNames.Items.Add(colName.ColumnName);
+                        }
                     }
                     foreach (DataColumn colName in dtEntityProperty.Columns)
                     {
@@ -270,6 +278,7 @@ namespace SF_Entity_Metadata
                                     else if (nodeChildEntity.Name.Equals("Property"))
                                     {
                                         drProperty = dtEntityProperty.NewRow();
+                                        drProperty["X"] = false;
                                         drProperty["EntityName"] = strEntityName;
                                         drProperty["Property_Name"] = nodeChildEntity.Attributes["Name"] != null ? nodeChildEntity.Attributes["Name"].Value : "";
                                         drProperty["Type"] = nodeChildEntity.Attributes["Type"] != null ? nodeChildEntity.Attributes["Type"].Value : "";
@@ -287,6 +296,7 @@ namespace SF_Entity_Metadata
                                     else if (nodeChildEntity.Name.Equals("NavigationProperty"))
                                     {
                                         drNavigationProperty = dtEntityNavigationProperty.NewRow();
+                                        drNavigationProperty["X"] = false;
                                         drNavigationProperty["EntityName"] = strEntityName;
                                         drNavigationProperty["NavigationProperty_Name"] = nodeChildEntity.Attributes["Name"] != null ? nodeChildEntity.Attributes["Name"].Value : "";
                                         //drNavigationProperty["sap_required"] = nodeChildEntity.Attributes["sap:required"] != null ? nodeChildEntity.Attributes["sap:required"].Value : "";
@@ -609,7 +619,7 @@ namespace SF_Entity_Metadata
             {
                 sEntityName = dgvEntitySetList.SelectedRows[0].Cells[0].Value.ToString();
                 sQuery += sEntityName + "?$format=json";
-                if (dgvKey.SelectedRows != null)
+                //if (dgvKey.SelectedRows != null)
                 {
                     //foreach (DataGridViewRow itemSelected in dgvKey.SelectedRows)
                     foreach (DataGridViewRow itemSelected in dgvKey.Rows)
@@ -627,35 +637,42 @@ namespace SF_Entity_Metadata
                             sFilter += itemSelected.Cells[2].Value.ToString() + " eq " + "'[Enter Value]' ";
                         }
                     }
-                    if(string.IsNullOrEmpty(sFilter) == false)
+                    if (string.IsNullOrEmpty(sFilter) == false)
                     {
                         sQuery += "&$" + sFilter;
                     }
                 }
-                if (dgvProperty.SelectedRows != null)
+                //if (dgvProperty.SelectedRows != null)
                 {
-                    foreach (DataGridViewRow itemSelected in dgvProperty.SelectedRows)
+                    //foreach (DataGridViewRow itemSelected in dgvProperty.SelectedRows)
+                    foreach (DataGridViewRow itemSelected in dgvProperty.Rows)
                     {
-                        if (string.IsNullOrEmpty(sSelect) == false)
+                        if ((bool)itemSelected.Cells[0].Value == true)
                         {
-                            sSelect += ",";
+                            if (string.IsNullOrEmpty(sSelect) == false)
+                            {
+                                sSelect += ",";
+                            }
+                            else
+                            {
+                                sSelect = "select=";
+                            }
+                            sSelect += itemSelected.Cells[1].Value.ToString();
                         }
-                        else
-                        {
-                            sSelect = "select=";
-                        }
-                        sSelect += itemSelected.Cells[1].Value.ToString();
                     }
-                    if(string.IsNullOrEmpty (sSelect) == false)
+                    if (string.IsNullOrEmpty(sSelect) == false)
                     {
                         sQuery += "&$" + sSelect;
                     }
                 }
                 if (dgvNavigation.SelectedRows != null)
                 {
-                    foreach (DataGridViewRow itemSelected in dgvNavigation.SelectedRows)
+                    //foreach (DataGridViewRow itemSelected in dgvNavigation.SelectedRows)
+                    foreach (DataGridViewRow itemSelected in dgvNavigation.Rows)
                     {
-                        if (string.IsNullOrEmpty(sExpand) == false)
+                        if ((bool)itemSelected.Cells[0].Value == true)
+                        {
+                            if (string.IsNullOrEmpty(sExpand) == false)
                         {
                             sExpand += ",";
                         }
@@ -664,15 +681,16 @@ namespace SF_Entity_Metadata
                             sExpand = "expand=";
                         }
                         sExpand += itemSelected.Cells[1].Value.ToString();
+                            }
                     }
-                    if(string.IsNullOrEmpty(sExpand) == false)
+                    if (string.IsNullOrEmpty(sExpand) == false)
                     {
                         sQuery += "&$" + sExpand;
                     }
                 }
             }
 
-            if(sQuery.Equals(sfConfigObject.apiurl) == false)
+            if (sQuery.Equals(sfConfigObject.apiurl) == false)
             {
                 tbQuery.Text = sQuery;
             }
@@ -684,10 +702,6 @@ namespace SF_Entity_Metadata
             dlgQueryExecutor.ShowDialog();
         }
 
-        private void dgvKey_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void dgvKey_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -697,7 +711,7 @@ namespace SF_Entity_Metadata
             }
         }
 
-        private void dgvKey_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dgvKey_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //if (dgvKey.Columns[e.ColumnIndex].HeaderText.Equals("X"))
             {
@@ -719,5 +733,68 @@ namespace SF_Entity_Metadata
                 }
             }
         }
+        private void dgvProperty_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (dgvKey.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+            {
+                if (e.RowIndex == -1)
+                {
+                    if (dgvProperty.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+                    {
+                        foreach (DataGridViewRow rowitem in dgvProperty.Rows)
+                        {
+                            //rowitem.Cells[e.ColumnIndex].Value = !(bool)rowitem.Cells[e.ColumnIndex].Value;
+                            rowitem.Cells[0].Value = !(bool)rowitem.Cells[0].Value;
+                        }
+                    }
+                }
+                else //if (dgvKey.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+                {
+                    //dgvKey.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = !(bool)dgvKey.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    dgvProperty.Rows[e.RowIndex].Cells[0].Value = !(bool)dgvProperty.Rows[e.RowIndex].Cells[0].Value;
+                }
+            }
+        }
+
+        private void dgvProperty_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProperty.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+            {
+                dgvProperty.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dgvNavigation_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (dgvKey.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+            {
+                if (e.RowIndex == -1)
+                {
+                    if (dgvNavigation.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+                    {
+                        foreach (DataGridViewRow rowitem in dgvNavigation.Rows)
+                        {
+                            //rowitem.Cells[e.ColumnIndex].Value = !(bool)rowitem.Cells[e.ColumnIndex].Value;
+                            rowitem.Cells[0].Value = !(bool)rowitem.Cells[0].Value;
+                        }
+                    }
+                }
+                else //if (dgvKey.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+                {
+                    //dgvKey.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = !(bool)dgvKey.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    dgvNavigation.Rows[e.RowIndex].Cells[0].Value = !(bool)dgvNavigation.Rows[e.RowIndex].Cells[0].Value;
+                }
+            }
+        }
+
+        private void dgvNavigation_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvNavigation.Columns[e.ColumnIndex].HeaderText.Equals("X"))
+            {
+                dgvNavigation.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+
     }
 }

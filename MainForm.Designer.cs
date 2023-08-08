@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
             this.tbCompanyId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,11 +65,10 @@
             // tbCompanyId
             // 
             this.tbCompanyId.Location = new System.Drawing.Point(148, 16);
-            this.tbCompanyId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCompanyId.Margin = new System.Windows.Forms.Padding(4);
             this.tbCompanyId.Name = "tbCompanyId";
             this.tbCompanyId.Size = new System.Drawing.Size(132, 30);
             this.tbCompanyId.TabIndex = 1;
-            this.tbCompanyId.Text = "iochpemaxi";
             // 
             // label2
             // 
@@ -85,11 +83,10 @@
             // tbUserId
             // 
             this.tbUserId.Location = new System.Drawing.Point(379, 16);
-            this.tbUserId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserId.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserId.Name = "tbUserId";
             this.tbUserId.Size = new System.Drawing.Size(132, 30);
             this.tbUserId.TabIndex = 3;
-            this.tbUserId.Text = "onama_ad";
             // 
             // label3
             // 
@@ -104,11 +101,10 @@
             // tbClientId
             // 
             this.tbClientId.Location = new System.Drawing.Point(619, 19);
-            this.tbClientId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbClientId.Margin = new System.Windows.Forms.Padding(4);
             this.tbClientId.Name = "tbClientId";
             this.tbClientId.Size = new System.Drawing.Size(480, 30);
             this.tbClientId.TabIndex = 5;
-            this.tbClientId.Text = "MGI5NWFkMzUwNjIwYzlmMTM3ZTVjNGY0YzI2Zg";
             // 
             // label4
             // 
@@ -123,11 +119,10 @@
             // tbGrantType
             // 
             this.tbGrantType.Location = new System.Drawing.Point(148, 59);
-            this.tbGrantType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbGrantType.Margin = new System.Windows.Forms.Padding(4);
             this.tbGrantType.Name = "tbGrantType";
             this.tbGrantType.Size = new System.Drawing.Size(423, 30);
             this.tbGrantType.TabIndex = 7;
-            this.tbGrantType.Text = "urn:ietf:params:oauth:grant-type:saml2-bearer";
             // 
             // label5
             // 
@@ -142,13 +137,12 @@
             // tbClientSecret
             // 
             this.tbClientSecret.Location = new System.Drawing.Point(148, 139);
-            this.tbClientSecret.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbClientSecret.Margin = new System.Windows.Forms.Padding(4);
             this.tbClientSecret.Multiline = true;
             this.tbClientSecret.Name = "tbClientSecret";
             this.tbClientSecret.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbClientSecret.Size = new System.Drawing.Size(1053, 195);
             this.tbClientSecret.TabIndex = 9;
-            this.tbClientSecret.Text = resources.GetString("tbClientSecret.Text");
             // 
             // label6
             // 
@@ -163,11 +157,10 @@
             // tbAssertionUrl
             // 
             this.tbAssertionUrl.Location = new System.Drawing.Point(731, 62);
-            this.tbAssertionUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAssertionUrl.Margin = new System.Windows.Forms.Padding(4);
             this.tbAssertionUrl.Name = "tbAssertionUrl";
             this.tbAssertionUrl.Size = new System.Drawing.Size(315, 30);
             this.tbAssertionUrl.TabIndex = 11;
-            this.tbAssertionUrl.Text = "https://api19.sapsf.com/oauth/idp";
             // 
             // label7
             // 
@@ -182,11 +175,10 @@
             // tbTokenURL
             // 
             this.tbTokenURL.Location = new System.Drawing.Point(148, 101);
-            this.tbTokenURL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTokenURL.Margin = new System.Windows.Forms.Padding(4);
             this.tbTokenURL.Name = "tbTokenURL";
             this.tbTokenURL.Size = new System.Drawing.Size(337, 30);
             this.tbTokenURL.TabIndex = 13;
-            this.tbTokenURL.Text = "https://api19.sapsf.com/oauth/token";
             // 
             // label8
             // 
@@ -201,11 +193,10 @@
             // tbAPIURL
             // 
             this.tbAPIURL.Location = new System.Drawing.Point(600, 101);
-            this.tbAPIURL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAPIURL.Margin = new System.Windows.Forms.Padding(4);
             this.tbAPIURL.Name = "tbAPIURL";
             this.tbAPIURL.Size = new System.Drawing.Size(313, 30);
             this.tbAPIURL.TabIndex = 15;
-            this.tbAPIURL.Text = "https://api19.sapsf.com/odata/v2/";
             // 
             // btnGetMetadata
             // 
@@ -214,7 +205,7 @@
             this.btnGetMetadata.Name = "btnGetMetadata";
             this.btnGetMetadata.Size = new System.Drawing.Size(294, 39);
             this.btnGetMetadata.TabIndex = 16;
-            this.btnGetMetadata.Text = "Get Metadata from SF & Load";
+            this.btnGetMetadata.Text = "Get Metadata from SF && Load";
             this.btnGetMetadata.UseVisualStyleBackColor = true;
             this.btnGetMetadata.Click += new System.EventHandler(this.btnGetMetadata_Click);
             // 
@@ -231,11 +222,10 @@
             // tbMetadatUrl
             // 
             this.tbMetadatUrl.Location = new System.Drawing.Point(1072, 101);
-            this.tbMetadatUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbMetadatUrl.Margin = new System.Windows.Forms.Padding(4);
             this.tbMetadatUrl.Name = "tbMetadatUrl";
             this.tbMetadatUrl.Size = new System.Drawing.Size(129, 30);
             this.tbMetadatUrl.TabIndex = 20;
-            this.tbMetadatUrl.Text = "$metadata";
             // 
             // btnLoadMetadata
             // 
@@ -299,7 +289,7 @@
             this.Controls.Add(this.tbCompanyId);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "SF Entity Metadata Explorer";
             this.ResumeLayout(false);
