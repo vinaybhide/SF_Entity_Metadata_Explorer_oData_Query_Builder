@@ -657,7 +657,8 @@ namespace SF_Entity_Metadata
                             {
                                 sSelect = "select=";
                             }
-                            sSelect += itemSelected.Cells[1].Value.ToString();
+                            //sSelect += itemSelected.Cells[1].Value.ToString() + "." + itemSelected.Cells[2].Value.ToString();
+                            sSelect += itemSelected.Cells[2].Value.ToString();
                         }
                     }
                     if (string.IsNullOrEmpty(sSelect) == false)
@@ -673,15 +674,15 @@ namespace SF_Entity_Metadata
                         if ((bool)itemSelected.Cells[0].Value == true)
                         {
                             if (string.IsNullOrEmpty(sExpand) == false)
-                        {
-                            sExpand += ",";
-                        }
-                        else
-                        {
-                            sExpand = "expand=";
-                        }
-                        sExpand += itemSelected.Cells[1].Value.ToString();
+                            {
+                                sExpand += ",";
                             }
+                            else
+                            {
+                                sExpand = "expand=";
+                            }
+                            sExpand += itemSelected.Cells[2].Value.ToString();
+                        }
                     }
                     if (string.IsNullOrEmpty(sExpand) == false)
                     {
