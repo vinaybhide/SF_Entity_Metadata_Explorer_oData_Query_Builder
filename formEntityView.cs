@@ -700,7 +700,7 @@ namespace SF_Entity_Metadata
         private void btnExecute_Click(object sender, EventArgs e)
         {
             formQueryExecutor dlgQueryExecutor = new formQueryExecutor(tbQuery.Text, sfConfigObject);
-            dlgQueryExecutor.ShowDialog();
+            dlgQueryExecutor.Show();// .ShowDialog();
         }
 
 

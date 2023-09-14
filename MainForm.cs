@@ -99,11 +99,12 @@ namespace SF_Entity_Metadata
             openFileDialog.Filter = "XML files (*.xml)|*.xml";
             openFileDialog.DefaultExt = "xml";
             openFileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                Cursor = Cursors.WaitCursor;
                 xmlEntityMetadata = File.ReadAllText(openFileDialog.FileName);
                 formEntityView dlgEntityView = new formEntityView(xmlEntityMetadata, sfConfigObject);
+                Cursor = Cursors.Default;
                 dlgEntityView.ShowDialog();
             }
         }
